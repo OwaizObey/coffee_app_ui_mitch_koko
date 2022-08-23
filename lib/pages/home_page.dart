@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-import 'package:coffee_app_ui_mitch_koko/util/coffee_tile.dart';
+import '../util/coffee_tile.dart';
+import '../util/coffee_type.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,6 +55,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         items: items,
         height: 50,
+        color: Colors.grey.shade400,
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 400),
@@ -65,14 +67,14 @@ class _HomePageState extends State<HomePage> {
         children: [
           // Find thr best coffee for you
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
               'Find the best coffee for you',
               style: GoogleFonts.bebasNeue(fontSize: 56),
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 20,
           ),
           // Search bar
           Padding(
@@ -91,8 +93,26 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(
-            height: 25,
+            height: 20,
           ),
+          //  Horizontal listview of coffee types
+          Container(
+            height: 30,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CoffeeType(coffeeType: 'Cappucino'),
+                CoffeeType(coffeeType: 'Latte'),
+                CoffeeType(coffeeType: 'Black'),
+                CoffeeType(coffeeType: 'Expresso'),
+                CoffeeType(coffeeType: 'Hot'),
+                CoffeeType(coffeeType: 'Cold'),
+                CoffeeType(coffeeType: 'Iced Coffee'),
+                CoffeeType(coffeeType: 'Caffe mocha'),
+              ],
+            ),
+          ),
+
           // horizontal listview of coffee tiles
           Expanded(
             child: ListView(
