@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
+import 'package:coffee_app_ui_mitch_koko/util/coffee_tile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         items: items,
+        height: 50,
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 400),
@@ -88,8 +90,21 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-
+          SizedBox(
+            height: 25,
+          ),
           // horizontal listview of coffee tiles
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CoffeeTile(),
+                CoffeeTile(),
+                CoffeeTile(),
+                CoffeeTile(),
+              ],
+            ),
+          ),
         ],
       ),
     );
