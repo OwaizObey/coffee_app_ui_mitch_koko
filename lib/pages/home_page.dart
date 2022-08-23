@@ -14,6 +14,29 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index = 0;
+  // List of coffee Types
+  final List coffeeType = [
+    //[coffeeType , isSelected]
+    ['Cappucino', true],
+    ['Latte', false],
+    ['Black', false],
+    ['Expresso', false],
+    ['Hot', false],
+    ['Cold', false],
+    ['Iced Coffee', false],
+    ['Caffe mocha', false],
+  ];
+  // User tapped on Coffee type
+  void coffeeTypeSelected(int index) {
+    setState(() {
+      // This for loop  makes every selection false
+      for (int i = 0; i < coffeeType.length; i++) {
+        coffeeType[i][1] = false;
+      }
+      coffeeType[index][1] = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final items = [
@@ -98,18 +121,18 @@ class _HomePageState extends State<HomePage> {
           //  Horizontal listview of coffee types
           Container(
             height: 30,
-            child: ListView(
+            child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              children: [
-                CoffeeType(coffeeType: 'Cappucino'),
-                CoffeeType(coffeeType: 'Latte'),
-                CoffeeType(coffeeType: 'Black'),
-                CoffeeType(coffeeType: 'Expresso'),
-                CoffeeType(coffeeType: 'Hot'),
-                CoffeeType(coffeeType: 'Cold'),
-                CoffeeType(coffeeType: 'Iced Coffee'),
-                CoffeeType(coffeeType: 'Caffe mocha'),
-              ],
+              itemCount: coffeeType.length,
+              itemBuilder: (context, index) {
+                return CoffeeType(
+                  coffeeType: coffeeType[index][0],
+                  isSelected: coffeeType[index][1],
+                  onTap: (() {
+                    coffeeTypeSelected(index);
+                  }),
+                );
+              },
             ),
           ),
 
@@ -118,10 +141,31 @@ class _HomePageState extends State<HomePage> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                CoffeeTile(),
-                CoffeeTile(),
-                CoffeeTile(),
-                CoffeeTile(),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/images/cappucino.jpg',
+                  coffeeName: 'Cappucino',
+                  coffeePrice: '4.20',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/images/latte.jpg',
+                  coffeeName: 'Latte',
+                  coffeePrice: '6.20',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/images/milk.jpg',
+                  coffeeName: 'Milk',
+                  coffeePrice: '8.20',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/images/Expresso.gif',
+                  coffeeName: 'Expresso',
+                  coffeePrice: '4.20',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/images/Expresso.jpg',
+                  coffeeName: 'Caffe Mocha',
+                  coffeePrice: '4.20',
+                ),
               ],
             ),
           ),
