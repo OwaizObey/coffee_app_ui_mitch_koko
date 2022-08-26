@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     ['Caffe mocha', false],
   ];
   // User tapped on Coffee type
-  void coffeeTypeSelected(int index) {
+  void coffeeTypeSelected(int index) {  
     setState(() {
       // This for loop  makes every selection false
       for (int i = 0; i < coffeeType.length; i++) {
